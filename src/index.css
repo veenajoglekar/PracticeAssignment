@@ -15,3 +15,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.myBtn{
+  margin-top: 10px;
+  margin-left: 10px;
+  align-self: auto;
+}

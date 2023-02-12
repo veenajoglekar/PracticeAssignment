@@ -1,6 +1,7 @@
 import React, { Component, useEffect, useState } from "react";
 import dashboardService from "./dashboard.service.js";
 import MyModal from "./MyModal";
+import store from "./store.js";
 
 const Dashboard = () => {
   const [users, setUsers] = useState([]);
@@ -31,12 +32,13 @@ const Dashboard = () => {
   const getUsers = () => {
     dashboardService.getUsers().then((res) => {
       console.log(res);
+      store.dispatch({type: 'setUsers', payload: res.data});
       setUsers(res.data);
     });
   };
 
   const addUser = () => {
-    let payload = {
+    let payload :any = {
       firstName,
       lastName,
       age,
@@ -48,6 +50,7 @@ const Dashboard = () => {
         setMessage("User added successfully")
         setShowToast(true);
         setShowAdd(false);
+        store.dispatch({type: 'create', payload})
         getUsers()
       });
     } else {
@@ -57,7 +60,7 @@ const Dashboard = () => {
           setMessage("User updated successfully")
           setShowToast(true);
           setShowAdd(false);
-
+          store.dispatch({type: 'update', payload, id: payload._id})
           console.log(res);
           getUsers()
         });
@@ -111,6 +114,7 @@ const Dashboard = () => {
   const deleteUser = (user: any) => {
     dashboardService.deleteUser(user).then((res) => {
       console.log(res);
+      store.dispatch({type: 'update', payload: user, id: user._id})
       setMessage("User deleted successfully")
       setShowToast(true);
       getUsers();

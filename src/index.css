@@ -21,3 +21,18 @@ code {
   margin-left: 10px;
   align-self: auto;
 }
+
+.form-container{
+  margin: 20px;
+  width: 40%;
+}
+
+.cp{
+  cursor: pointer;
+}
+
+#toast-success{
+  position: absolute;
+  top: 10%;
+  left: 45%;
+}

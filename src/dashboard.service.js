@@ -10,6 +10,32 @@ const getUsers = () => {
     );
 }
 
+const createUser = (userObj) => {
+    return axios.post(`${baseUrl}/user/create`, userObj).then(
+        (response) => {
+            return response.data;
+        }
+    )
+}
+
+const updateUser = (userObj, id) => {
+    return axios.patch(`${baseUrl}/user/${id}`, userObj).then(
+        (response) => {
+            return response.data;
+        }
+    )
+}
+
+const deleteUser = (userObj) => {
+    return axios.delete(`${baseUrl}/user/${userObj._id}`).then(
+        (response) => {
+            return response.data;
+        }
+    )
+}
 export default {
-    getUsers
+    getUsers,
+    createUser,
+    updateUser,
+    deleteUser
 }

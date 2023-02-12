@@ -8,12 +8,15 @@ function mainReducer(state = { users : [] }, action) {
         break;
       case 'create':
         newState.users.push(action.payload);
+        break;
     case 'update':
         let index = newState.users.findIndex((x) => x._id === action.id);
         newState.users[index] = Object.assign({}, action.payload);
+        break;
     case 'delete':
         let dIndex = newState.users.findIndex((x) => x._id === action.id);
         newState.users.splice(dIndex,1);
+        break;
       default:
         return newState;
     }
